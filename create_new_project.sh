@@ -19,11 +19,21 @@ read -p "Enter the path to generate the project (default: current directory): " 
 
 if [ -z "$project_path" ]; then
   project_path="."
+else
+  # Replace tilde with the actual home directory path
+  project_path="$(eval echo $project_path)"
 fi
 
 # Check if the path is valid
 if [ ! -d "$project_path" ]; then
-  echo "Error: Invalid path. Please enter a valid directory."
+  echo "Error: Invalid path: $project_path. Please enter a valid directory."
+  exit 1
+fi
+
+# Create the new project subfolder
+mkdir -p "$project_path/$new_project_name"
+if [ ! -d "$project_path/$new_project_name" ]; then
+  echo "Error: Failed to create project directory: $project_path/$new_project_name."
   exit 1
 fi
 
