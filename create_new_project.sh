@@ -42,8 +42,18 @@ template_project_path="template_project"
 # Copy the template project and replace placeholders
 cp -R $template_project_path "$project_path/$new_project_name"
 cd "$project_path/$new_project_name"
-sed -i "s/template_project/$new_project_name/g" pyproject.toml
-sed -i "s/template_project/$new_project_name/g" setup.py
+
+# Detect OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  sed -i '' "s/template_project/$new_project_name/g" pyproject.toml
+  sed -i '' "s/template_project/$new_project_name/g" setup.py
+else
+  # Linux
+  sed -i "s/template_project/$new_project_name/g" pyproject.toml
+  sed -i "s/template_project/$new_project_name/g" setup.py
+fi
+
 mv src/template_project src/$new_project_name
 
 # Initialize a new Git repository
