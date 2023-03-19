@@ -22,6 +22,8 @@ if [ -z "$project_path" ]; then
 else
   # Replace tilde with the actual home directory path
   project_path="$(eval echo $project_path)"
+  # Remove any trailing slashes
+  project_path="${project_path%/}"
 fi
 
 # Check if the path is valid
