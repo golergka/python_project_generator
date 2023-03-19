@@ -40,8 +40,6 @@ To run the project:
 poetry run your-entry-point
 ```
 
-Replace `your-entry-point` with the desired command name specified in `setup.py`.
-
 To build and package the project:
 
 ```bash

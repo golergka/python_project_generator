@@ -52,16 +52,26 @@ fi
 cd "$project_path/$new_project_name" || { echo "Error: Failed to change directory to the new project."; exit 1; }
 echo "Current working directory: $(pwd)"
 
-# Detect OS
+entry_point_name="${new_project_name//-/_}"
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS
   sed -i '' "s/template_project/$new_project_name/g" pyproject.toml
   sed -i '' "s/template_project/$new_project_name/g" setup.py
+  sed -i '' "s/template_project/$new_project_name/g" README.md
+  sed -i '' "s/your-entry-point/$entry_point_name/g" pyproject.toml
+  sed -i '' "s/your-entry-point/$entry_point_name/g" setup.py
+  sed -i '' "s/your-entry-point/$entry_point_name/g" README.md
 else
   # Linux
   sed -i "s/template_project/$new_project_name/g" pyproject.toml
   sed -i "s/template_project/$new_project_name/g" setup.py
+  sed -i "s/template_project/$new_project_name/g" README.md
+  sed -i "s/your-entry-point/$entry_point_name/g" pyproject.toml
+  sed -i "s/your-entry-point/$entry_point_name/g" setup.py
+  sed -i "s/your-entry-point/$entry_point_name/g" README.md
 fi
+
 
 mv src/template_project src/$new_project_name
 
