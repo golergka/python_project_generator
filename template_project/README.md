@@ -65,3 +65,15 @@ Don't forget to replace `your-entry-point` with the desired command name specifi
 This project uses [Poetry](https://python-poetry.org/) for dependency management. The `poetry.lock` file contains information about the exact versions of the dependencies used in the project. It is recommended to commit this file to the repository to ensure consistent behavior across different environments.
 
 When you install the project dependencies using `poetry install`, Poetry will use the versions specified in the `poetry.lock` file. If you want to update the dependencies to their latest versions, you can run `poetry update`.
+
+## Adding a new dependency
+
+To add a new dependency to the project, use the `poetry add` command followed by the package name. For example, if you want to add the `requests` library, run:
+
+```bash
+poetry add requests
+```
+
+This command will update the `pyproject.toml` file with the new dependency and update the `poetry.lock` file with the exact version of the package being used. Make sure to commit both the updated `pyproject.toml` and `poetry.lock` files to the repository.
+
+For more information about managing dependencies with Poetry, refer to the [Poetry documentation](https://python-poetry.org/docs/dependency-management/).
