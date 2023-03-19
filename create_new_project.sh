@@ -14,6 +14,12 @@ fi
 
 new_project_name=$1
 
+if [[ ! "$new_project_name" =~ ^[a-zA-Z0-9_]+$ ]]; then
+  echo "Error: The project name should only contain alphanumeric characters and underscores."
+  echo "Please provide a valid project name."
+  exit 1
+fi
+
 # Ask for the path to generate the project
 read -p "Enter the path to generate the project (default: current directory): " project_path
 
@@ -71,7 +77,6 @@ else
   sed -i "s/your-entry-point/$entry_point_name/g" setup.py
   sed -i "s/your-entry-point/$entry_point_name/g" README.md
 fi
-
 
 mv src/template_project src/$new_project_name
 
