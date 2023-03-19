@@ -49,6 +49,7 @@ fi
 template_project_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/template_project"
 
 # Copy the template project and replace placeholders
+shopt -s dotglob
 cp -R $template_project_path/* "$project_path/$new_project_name"
 if [ ! -d "$project_path/$new_project_name" ]; then
   echo "Error: Failed to copy the template project to the new project directory: $project_path/$new_project_name."
