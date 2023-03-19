@@ -39,11 +39,18 @@ if [ ! -d "$project_path/$new_project_name" ]; then
   exit 1
 fi
 
-template_project_path="template_project"
+# Set the absolute path to the template_project directory
+template_project_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/template_project"
 
 # Copy the template project and replace placeholders
-cp -R $template_project_path "$project_path/$new_project_name"
-cd "$project_path/$new_project_name"
+cp -R $template_project_path/* "$project_path/$new_project_name"
+if [ ! -d "$project_path/$new_project_name" ]; then
+  echo "Error: Failed to copy the template project to the new project directory: $project_path/$new_project_name."
+  exit 1
+fi
+
+cd "$project_path/$new_project_name" || { echo "Error: Failed to change directory to the new project."; exit 1; }
+echo "Current working directory: $(pwd)"
 
 # Detect OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
