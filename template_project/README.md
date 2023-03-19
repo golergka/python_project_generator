@@ -59,3 +59,9 @@ your-entry-point
 ```
 
 Don't forget to replace `your-entry-point` with the desired command name specified in `setup.py`.
+
+## Dependencies and poetry.lock
+
+This project uses [Poetry](https://python-poetry.org/) for dependency management. The `poetry.lock` file contains information about the exact versions of the dependencies used in the project. It is recommended to commit this file to the repository to ensure consistent behavior across different environments.
+
+When you install the project dependencies using `poetry install`, Poetry will use the versions specified in the `poetry.lock` file. If you want to update the dependencies to their latest versions, you can run `poetry update`.
